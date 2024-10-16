@@ -2,109 +2,106 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  html, body {
-      height: 100%;
-  }
-  
-  body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: black;
-      margin: 0;
-      overflow: hidden;
-  }
-  
-  .game-container {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-  }
-  
-  .game-board {
-      width: 100%;
-      height: 80%;
-      border-bottom: 15px solid rgb(35, 160, 35);
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(#87ceeb, #e0f6ff);
-  }
-  
-  .pipe {
-      position: absolute;
-      bottom: 0;
-      width: 80px;
-      animation: pipe-animation 1.5s infinite linear;
-  }
-  
-  .mario {
-      width: 150px;
-      position: absolute;
-      bottom: 0;
-  }
-  
-  .jump {
-      animation: jump 500ms ease-out;
-  }
-  
-  .clouds {
-      position: absolute;
-      width: 550px;
-      animation: clouds-animation 20s infinite linear;
-  }
-  .scoreboard {
+}
+
+html, body {
+    height: 100%;
+    margin: 0; /* Adicione isto */
+    padding: 0; /* Adicione isto */
+    overflow: hidden; /* Remove a barra de rolagem */
+    background-color: black; /* Fundo preto */
+}
+
+body {
+    background-color: brown;
+}
+
+.game-container {
+    position: absolute; /* Use absolute para ocupar toda a tela */
+    top: 0; /* Início na parte superior */
+    left: 0; /* Início na parte esquerda */
+    width: 100%;  /* Largura total */
+    height: 100%; /* Altura total */
+}
+
+
+.game-board {
+    width: 100%;   /* Ocupa toda a largura */
+    height: 80%;   /* Ajuste conforme necessário */
+    border-bottom: 15px solid rgb(35, 160, 35);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(#87ceeb, #e0f6ff);
+}
+
+.pipe {
+    position: absolute;
+    bottom: 0;
+    width: 80px;
+    animation: pipe-animation 1.5s infinite linear;
+}
+
+.mario {
+    width: 150px;
+    position: absolute;
+    bottom: 0;
+}
+
+.jump {
+    animation: jump 500ms ease-out;
+}
+
+.clouds {
+    position: absolute;
+    width: 550px;
+    animation: clouds-animation 20s infinite linear;
+}
+
+.scoreboard {
     position: absolute;
     top: 20px;
     left: 20px;
     color: white;
     font-size: 24px;
-    z-index: 1000; /* Certifique-se de que o placar apareça acima do jogo */
-  }
+    z-index: 1000; /* Para garantir que o placar esteja acima do jogo */
+}
 
-  .score, .high-score {
+.score, .high-score {
     margin-bottom: 5px;
-  } 
+}
 
-  
-  @keyframes pipe-animation {
-      from {
-          right: -80px;
-      }
-      to {
-          right: 100%;
-      }
-  }
-  
-  @keyframes jump {
-      0% {
-          bottom: 0;
-      }
-      40% {
-          bottom: 180px;
-      }
-      50% {
-          bottom: 180px;
-      }
-      60% {
-          bottom: 180px;
-      }
-      100% {
-          bottom: 0;
-      }
-  }
-  
-  @keyframes clouds-animation {
-      from {
-          right: -550px;
-      }
-      to {
-          right: 100%;
-      }
-  }
-  
+@keyframes pipe-animation {
+    from {
+        right: -80px;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+@keyframes jump {
+    0% {
+        bottom: 0;
+    }
+    40% {
+        bottom: 180px;
+    }
+    50% {
+        bottom: 180px;
+    }
+    60% {
+        bottom: 180px;
+    }
+    100% {
+        bottom: 0;
+    }
+}
+
+@keyframes clouds-animation {
+    from {
+        right: -550px;
+    }
+    to {
+        right: 100%;
+    }
+}
