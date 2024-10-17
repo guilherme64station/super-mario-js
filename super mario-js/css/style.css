@@ -38,8 +38,9 @@ body {
     position: absolute;
     bottom: 0;
     width: 80px;
-    animation: pipe-animation 1.5s infinite linear;
+    animation: pipe-animation 3s infinite linear; /* Aumente o tempo aqui */
 }
+
 
 .mario {
     width: 150px;
@@ -61,7 +62,7 @@ body {
     position: absolute;
     top: 20px;
     left: 20px;
-    color: white;
+    color: black;
     font-size: 24px;
     z-index: 1000; /* Para garantir que o placar esteja acima do jogo */
 }
@@ -70,6 +71,47 @@ body {
     margin-bottom: 5px;
 }
 
+.game-over {
+    display: none; /* Inicialmente oculto */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000; /* Para garantir que a mensagem esteja acima de tudo */
+}
+
+.game-over h1 {
+    margin-bottom: 10px;
+}
+
+.enemy {
+    position: absolute;
+    bottom: 0;
+    width: 60px; /* Aumente para 60px */
+    height: auto; /* Mantém a proporção da imagem */
+    animation: enemy-animation 3s infinite linear; /* Animação de movimento */
+}
+
+.enemy.defeated {
+    opacity: 0; /* Torna o Koopa invisível */
+    transition: opacity 0.5s; /* Animação suave ao ser derrotado */
+}
+
+
+@keyframes enemy-animation {
+    from {
+        right: -50px; /* Começa fora da tela */
+    }
+    to {
+        right: 100%; /* Move para fora da tela à direita */
+    }
+}
+ 
 @keyframes pipe-animation {
     from {
         right: -80px;
@@ -84,13 +126,13 @@ body {
         bottom: 0;
     }
     40% {
-        bottom: 180px;
+        bottom: 200px;
     }
     50% {
-        bottom: 180px;
+        bottom: 200px;
     }
     60% {
-        bottom: 180px;
+        bottom: 200px;
     }
     100% {
         bottom: 0;
