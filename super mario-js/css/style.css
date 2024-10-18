@@ -89,29 +89,6 @@ body {
     margin-bottom: 10px;
 }
 
-.enemy {
-    position: absolute;
-    bottom: 0;
-    width: 60px; /* Aumente para 60px */
-    height: auto; /* Mantém a proporção da imagem */
-    animation: enemy-animation 3s infinite linear; /* Animação de movimento */
-}
-
-.enemy.defeated {
-    opacity: 0; /* Torna o Koopa invisível */
-    transition: opacity 0.5s; /* Animação suave ao ser derrotado */
-}
-
-
-@keyframes enemy-animation {
-    from {
-        right: -50px; /* Começa fora da tela */
-    }
-    to {
-        right: 100%; /* Move para fora da tela à direita */
-    }
-}
- 
 @keyframes pipe-animation {
     from {
         right: -80px;

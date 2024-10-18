@@ -9,10 +9,8 @@ let gameLoop;
 let score = 0;
 let highScore = localStorage.getItem('highScore') || 0;
 
-// Atualiza a exibição do recorde
 highScoreElement.textContent = highScore;
 
-// Função de pulo
 const jump = () => {
     if (!isGameOver && !mario.classList.contains('jump')) {
         mario.classList.add('jump');
@@ -23,30 +21,16 @@ const jump = () => {
 };
 
 const checkCollision = () => {
-    const enemy = document.getElementById('enemy');
-    const enemyRect = enemy.getBoundingClientRect();
     const marioRect = mario.getBoundingClientRect();
+    const pipeRect = pipe.getBoundingClientRect();
 
-    const marioIsJumping = mario.classList.contains('jump');
-
-    // Verifica se Mario está colidindo com o Koopa
+    // Verifica se Mario colidiu com o pipe
     if (
-        enemyRect.left < marioRect.right &&
-        enemyRect.right > marioRect.left &&
-        enemyRect.top < marioRect.bottom &&
-        enemyRect.bottom > marioRect.top
+        pipeRect.left < marioRect.right &&
+        pipeRect.right > marioRect.left &&
+        marioRect.bottom > pipeRect.top
     ) {
-        if (marioIsJumping) {
-            // Mario "mata" o Koopa
-            enemy.classList.add('defeated'); // Adiciona a classe de derrotado
-            score += 5; // Adiciona pontos ao matar o Koopa
-            currentScoreElement.textContent = score; // Atualiza a pontuação exibida
-            enemy.style.left = '100%'; // Reseta a posição do Koopa
-            return false; // Não finalize o jogo
-        } else {
-            // Se não estiver pulando, Mario morre
-            return true; // Finaliza o jogo
-        }
+        return true; // Colisão com o pipe
     }
     return false; // Sem colisão
 };
@@ -54,56 +38,37 @@ const checkCollision = () => {
 const startGameLoop = () => {
     gameLoop = setInterval(() => {
         const pipePosition = pipe.offsetLeft;
-        const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
-        const enemy = document.getElementById('enemy');
-        const enemyPosition = enemy.offsetLeft;
 
         // Verifica se Mario colidiu com o pipe
-        if (pipePosition < 120 && pipePosition > 0 && marioPosition < 80) {
+        if (checkCollision()) {
             endGame();
         }
 
-        // Verifica se Mario colidiu com o Koopa
-        if (checkCollision()) {
-            endGame(); // Chama a função para encerrar o jogo se não estiver pulando
-        }
-
-        // Movimento do Koopa
-        enemy.style.left = `${enemyPosition - 25}px`; // Move o Koopa para a esquerda
-
-        // Reseta a posição do Koopa se sair da tela
-        if (enemyPosition < -80) {
-            enemy.style.left = '100%'; // Reinicia a posição do Koopa
-        }
+        // Lógica para aumentar a pontuação
+        score += 1;
+        currentScoreElement.textContent = score;
     }, 100);
 };
 
-
-// Função para encerrar o jogo
 const endGame = () => {
-    isGameOver = true; // Define o jogo como encerrado
-    clearInterval(gameLoop); // Para o loop do jogo
-    mario.src = './img/game-over.png'; // Define a imagem do Mario para Game Over
+    isGameOver = true;
+    clearInterval(gameLoop);
+    mario.src = './img/game-over.png'; // Atualize a imagem conforme necessário
     mario.style.width = '75px';
     mario.style.marginLeft = '50px';
     
-    // Atualiza a pontuação final e exibe a mensagem de Game Over
     finalScoreElement.textContent = score;
-    gameOverElement.style.display = 'block'; // Exibe a mensagem de Game Over
-
-    // Verifica e atualiza o recorde
+    gameOverElement.style.display = 'block';
+    
     if (score > highScore) {
         highScore = score;
-        localStorage.setItem('highScore', highScore); // Armazena o novo recorde no localStorage
-        highScoreElement.textContent = highScore; // Atualiza a exibição do recorde
+        localStorage.setItem('highScore', highScore);
+        highScoreElement.textContent = highScore;
     }
 };
 
-// Função de inicialização do jogo (chamada ao carregar a página)
 const initGame = () => {
-    startGameLoop(); // Iniciar o loop do jogo
-
-    // Adicionar o listener para o evento de pulo (keydown)
+    startGameLoop();
     window.addEventListener('keydown', (event) => {
         if (event.code === 'Space' || event.code === 'ArrowUp') {
             jump();
@@ -111,5 +76,4 @@ const initGame = () => {
     });
 };
 
-// Inicializar o jogo ao carregar a página
 initGame();
