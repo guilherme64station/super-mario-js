@@ -6,121 +6,116 @@
 
 html, body {
     height: 100%;
-    margin: 0; /* Adicione isto */
-    padding: 0; /* Adicione isto */
-    overflow: hidden; /* Remove a barra de rolagem */
-    background-color: black; /* Fundo preto */
-}
-
-body {
-    background-color: brown;
+    margin: 0;
+    overflow: hidden; /* Evita barras de rolagem */
 }
 
 .game-container {
-    position: absolute; /* Use absolute para ocupar toda a tela */
-    top: 0; /* Início na parte superior */
-    left: 0; /* Início na parte esquerda */
-    width: 100%;  /* Largura total */
-    height: 100%; /* Altura total */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Garante que o conteúdo esteja alinhado ao fundo */
+    flex-direction: column;
+    overflow: hidden;
 }
 
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Garante que o conteúdo comece no topo */
+    background-color: #87ceeb; /* Fundo do céu */
+    margin: 0;
+}
 
 .game-board {
-    width: 100%;   /* Ocupa toda a largura */
-    height: 80%;   /* Ajuste conforme necessário */
-    border-bottom: 15px solid rgb(35, 160, 35);
+    width: 100vw;
+    height: 85vh; /* 85% da altura da tela para a área de jogo */
+    border-bottom: 15px solid rgb(35, 160, 35); /* Borda inferior verde para a grama */
     position: relative;
     overflow: hidden;
-    background: linear-gradient(#87ceeb, #e0f6ff);
-}
-
-.pipe {
-    position: absolute;
-    bottom: 0;
-    width: 80px;
-    animation: pipe-animation 3s infinite linear; /* Aumente o tempo aqui */
+    background: linear-gradient(#87ceeb, #e0f6ff); /* Fundo do céu e cores suaves */
 }
 
 
-.mario {
-    width: 150px;
-    position: absolute;
-    bottom: 0;
+
+.terra {
+    width: 100vw;
+    height: 5vh; /* 5% da altura da tela para a terra */
+    background-color: #8B4513; /* Cor marrom representando a terra */
+    border-top: none; /* Remove qualquer borda superior */
 }
 
-.jump {
-    animation: jump 500ms ease-out;
-}
-
-.clouds {
-    position: absolute;
-    width: 550px;
-    animation: clouds-animation 20s infinite linear;
-}
-
-.scoreboard {
+ .pipe {
+      position: absolute;
+      bottom: 0;
+      width: 80px;
+      animation: pipe-animation 1.5s infinite linear;
+  }
+  
+  .mario {
+      width: 150px;
+      position: absolute;
+      bottom: 0;
+  }
+  
+  .jump {
+      animation: jump 500ms ease-out;
+  }
+  
+  .clouds {
+      position: absolute;
+      width: 550px;
+      animation: clouds-animation 20s infinite linear;
+  }
+  .scoreboard {
     position: absolute;
     top: 20px;
     left: 20px;
     color: black;
     font-size: 24px;
-    z-index: 1000; /* Para garantir que o placar esteja acima do jogo */
-}
+    z-index: 1000; /* Certifique-se de que o placar apareça acima do jogo */
+  }
 
-.score, .high-score {
+  .score, .high-score {
     margin-bottom: 5px;
-}
+  } 
 
-.game-over {
-    display: none; /* Inicialmente oculto */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px;
-    border-radius: 10px;
-    z-index: 1000; /* Para garantir que a mensagem esteja acima de tudo */
-}
-
-.game-over h1 {
-    margin-bottom: 10px;
-}
-
-@keyframes pipe-animation {
-    from {
-        right: -80px;
-    }
-    to {
-        right: 100%;
-    }
-}
-
-@keyframes jump {
-    0% {
-        bottom: 0;
-    }
-    40% {
-        bottom: 200px;
-    }
-    50% {
-        bottom: 200px;
-    }
-    60% {
-        bottom: 200px;
-    }
-    100% {
-        bottom: 0;
-    }
-}
-
-@keyframes clouds-animation {
-    from {
-        right: -550px;
-    }
-    to {
-        right: 100%;
-    }
-}
+  
+  @keyframes pipe-animation {
+      from {
+          right: -80px;
+      }
+      to {
+          right: 100%;
+      }
+  }
+  
+  @keyframes jump {
+      0% {
+          bottom: 0;
+      }
+      40% {
+          bottom: 180px;
+      }
+      50% {
+          bottom: 180px;
+      }
+      60% {
+          bottom: 180px;
+      }
+      100% {
+          bottom: 0;
+      }
+  }
+  
+  @keyframes clouds-animation {
+      from {
+          right: -550px;
+      }
+      to {
+          right: 100%;
+      }
+  }
+  
