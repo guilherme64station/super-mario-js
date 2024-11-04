@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* Evita barras de rolagem */
+}
+
+.game-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Garante que o conteúdo esteja alinhado ao fundo */
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Garante que o conteúdo comece no topo */
+    background-color: #87ceeb; /* Fundo do céu */
+    margin: 0;
+}
+
+.game-board {
+    width: 100vw;
+    height: 85vh; /* 85% da altura da tela para a área de jogo */
+    border-bottom: 15px solid rgb(35, 160, 35); /* Borda inferior verde para a grama */
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(#87ceeb, #e0f6ff); /* Fundo do céu e cores suaves */
+}
+
+
+
+.terra {
+    width: 100vw;
+    height: 5vh; /* 5% da altura da tela para a terra */
+    background-color: #8B4513; /* Cor marrom representando a terra */
+    border-top: none; /* Remove qualquer borda superior */
+}
+
+ .pipe {
+      position: absolute;
+      bottom: 0;
+      width: 80px;
+      animation: pipe-animation 1.5s infinite linear;
+  }
+  
+  .mario {
+      width: 150px;
+      position: absolute;
+      bottom: 0;
+  }
+  
+  .jump {
+      animation: jump 500ms ease-out;
+  }
+  
+  .clouds {
+      position: absolute;
+      width: 550px;
+      animation: clouds-animation 20s infinite linear;
+  }
+  .scoreboard {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: black;
+    font-size: 24px;
+    z-index: 1000; /* Certifique-se de que o placar apareça acima do jogo */
+  }
+
+  .score, .high-score {
+    margin-bottom: 5px;
+  } 
+  .start-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 24px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001; /* Acima do placar */
+}
+
+.start-button:active {
+    background-color: #ffaa00;
+}
+
+.game-over-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro com transparência */
+    color: white;
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1002; /* Acima de todos os elementos */
+    visibility: hidden; /* Inicialmente escondido */
+    opacity: 0; /* Para efeito de transição */
+    transition: opacity 0.5s ease; /* Efeito suave de aparição */
+}
+
+.game-over-screen.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+  @keyframes pipe-animation {
+      from {
+          right: -80px;
+      }
+      to {
+          right: 100%;
+      }
+  }
+  
+  @keyframes jump {
+      0% {
+          bottom: 0;
+      }
+      40% {
+          bottom: 180px;
+      }
+      50% {
+          bottom: 180px;
+      }
+      60% {
+          bottom: 180px;
+      }
+      100% {
+          bottom: 0;
+      }
+  }
+  
+  @keyframes clouds-animation {
+      from {
+          right: -550px;
+      }
+      to {
+          right: 100%;
+      }
+  }
+  
